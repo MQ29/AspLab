@@ -15,32 +15,14 @@ namespace Lab2.Controllers
             return View();
         }
 
-        public IActionResult Result([FromQuery(Name = "operator")] Operators? op, double?x, double? y) 
+        [HttpPost]
+        public IActionResult Result([FromForm] Calculator model)
         {
-
-            if(x == null || y== null) 
+            if (!model.IsValid())
             {
                 return View("Error");
             }
-            switch(op)
-            {
-                case Operators.ADD:
-                    ViewBag.Result = x + y; 
-                    break;
-
-                case Operators.SUB:
-                    ViewBag.Result = x - y;
-                    break;
-                case Operators.MUL:
-                    ViewBag.Result = x * y;
-                    break;
-                case Operators.DIV:
-                    ViewBag.Result = x / y;
-                    break;
-
-
-            }
-            return View("Result");
+            return View(model);
         }
     }
 }
