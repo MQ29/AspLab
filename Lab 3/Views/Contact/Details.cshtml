@@ -9,40 +9,38 @@
 <table class="table">
     <tr>
         <th>
-            @Model.Name
+            Name
         </th>
         <th>
-            @Model.Email
+            Email
         </th>
         <th>
-            @Model.Birth
+            Birth
         </th>
         <th>
-            @Model.Priority
+            Priority
         </th>
         <th>
-            @Model.Created
+            Created
         </th>
     </tr>
-    @foreach (var item in Model)
-    {
         <tr>
             <td>
-                @item.Name.
+                @Model.Name
             </td>
             <td>
-                @item.Email
+                @Model.Email
             </td>
             <td>
-                @item.Birth
+                @Model.Birth
             </td>
             <td>
-                @item.Priority.GetDisplayName()
+                @Model.Priority.GetDisplayName()
             </td>
             <td>
-                @item.Created
+                @Model.Created
             </td>
         </tr>
-    }
+    
 </table>
 <a class="btn btn-primary" asp-action="Index">Powrót</a>
