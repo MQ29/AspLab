@@ -5,11 +5,14 @@ namespace Lab_3.Controllers
 {
     public class ContactController : Controller
     {
-        static readonly Dictionary<int, Contact> _contacts = new Dictionary<int, Contact>();
-        static int id = 1;
+        private readonly IContactService _contactService;
+        public ContactController(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
         public IActionResult Index()
         {
-            return View(_contacts);
+            return View(_contactService.FindAll());
         }
 
         [HttpGet]
@@ -24,8 +27,7 @@ namespace Lab_3.Controllers
         {
             if(ModelState.IsValid) 
             {
-                model.Id = id++;
-                _contacts.Add(model.Id, model);
+                _contactService.Add(model);
                 return RedirectToAction("Index");
             }
             return View(); //ponownie wyswitl form
@@ -34,7 +36,7 @@ namespace Lab_3.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_contacts[id]);
+            return View(_contactService.FindById(id));
         }
 
         [HttpPost]
@@ -42,7 +44,7 @@ namespace Lab_3.Controllers
         {
             if(ModelState.IsValid) 
             {
-                _contacts[model.Id] = model;
+                _contactService.Update(model);
                 return RedirectToAction("Index");
             }
             return View();
@@ -51,20 +53,20 @@ namespace Lab_3.Controllers
         [HttpGet]
         public IActionResult Delete(int id) 
         {
-            return View(_contacts[id]);
+            return View(_contactService.FindById(id));
         }
 
         [HttpPost]
         public IActionResult Delete(Contact model)
         {
-            _contacts.Remove(model.Id);
+            _contactService.Delete(model.Id);
             return RedirectToAction("Index");
         }
 
         
-        public IActionResult Details(Contact model)
+        public IActionResult Details(int id)
         {
-            return View(_contacts);
+            return View(_contactService.FindById(id));
         }
     }
 }
