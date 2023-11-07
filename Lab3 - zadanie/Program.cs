@@ -1,3 +1,4 @@
+using Data;
 using Lab3zadanie.Models;
 
 namespace Lab3zadanie
@@ -11,6 +12,7 @@ namespace Lab3zadanie
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IBookService, MemoryBookService>();
+            builder.Services.AddDbContext<AppDbContext>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
