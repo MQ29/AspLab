@@ -1,4 +1,4 @@
-using Data;
+using BookData;
 using Lab3zadanie.Models;
 
 namespace Lab3zadanie
@@ -11,7 +11,7 @@ namespace Lab3zadanie
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddSingleton<IBookService, MemoryBookService>();
+            builder.Services.AddTransient<IBookService, EFBookService>();
             builder.Services.AddDbContext<AppDbContext>();
             var app = builder.Build();
 

@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Data.Entities
+namespace BookData.Entities
 {
     [Table("Books")]
     public class BookEntity
     {
         [Key]
-        public int Id { get; set; }
+        public int BookId { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]

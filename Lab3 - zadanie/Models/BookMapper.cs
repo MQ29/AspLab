@@ -1,8 +1,8 @@
-﻿using Data.Entities;
+﻿using BookData.Entities;
 using Lab3zadanie.Models;
 using System.Reflection;
 
-namespace Lab3___zadanie.Models
+namespace Lab3zadanie.Models
 {
     public class BookMapper
     {
@@ -10,7 +10,7 @@ namespace Lab3___zadanie.Models
         {
             return new BookEntity()
             {
-                Id = model.Id,
+                BookId = model.Id,
                 Title = model.Title,
                 Author = model.Author,
                 ISBN = model.ISBN,
@@ -20,11 +20,11 @@ namespace Lab3___zadanie.Models
             };
         }
 
-        public static Book FromEntity(Book entity)
+        public static Book FromEntity(BookEntity entity)
         {
             return new Book()
             {
-                Id = entity.Id,
+                Id = entity.BookId,
                 Title = entity.Title,
                 Author = entity.Author,
                 ISBN = entity.ISBN,

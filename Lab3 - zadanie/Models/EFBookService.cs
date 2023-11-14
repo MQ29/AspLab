@@ -1,7 +1,8 @@
-﻿using Data;
+﻿using BookData;
+using BookData.Entities;
 using Lab3zadanie.Models;
 
-namespace Lab3___zadanie.Models
+namespace Lab3zadanie.Models
 {
     
     public class EFBookService : IBookService
@@ -15,28 +16,35 @@ namespace Lab3___zadanie.Models
         {
             var e = _context.Books.Add(BookMapper.ToEntity(book));
             _context.SaveChanges();
-            int id = e.Entity.Id;
+            int id = e.Entity.BookId;
             return id;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            BookEntity? find = _context.Books.Find(id);
+            if (find != null)
+            {
+                _context.Books.Remove(find);
+                _context.SaveChanges();
+            }
         }
 
         public List<Book> FindAll()
         {
-            throw new NotImplementedException();
+            return _context.Books.Select(e => BookMapper.FromEntity(e)).ToList();
         }
 
         public Book? FindById(int id)
         {
-            throw new NotImplementedException();
+            BookEntity? find = _context.Books.Find(id);
+            return find != null ? BookMapper.FromEntity(find) : null;
         }
 
-        public void Update(Book book)
+        public void Update(Book contact)
         {
-            throw new NotImplementedException();
+            _context.Books.Update(BookMapper.ToEntity(contact));
+            _context.SaveChanges();
         }
     }
 }
