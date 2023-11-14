@@ -28,9 +28,13 @@ namespace Lab_3.Controllers
                 }).ToList();
             return View(new Contact() { OrganizationList = list });
         }
+        //private List<SelectListItem> CreateSelectListItem();
+        //{
+        //    return
+        //}
 
 
-        [HttpPost]
+    [HttpPost]
         public IActionResult Create(Contact model)
         {
             if(ModelState.IsValid) 
