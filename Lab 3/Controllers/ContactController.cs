@@ -1,5 +1,6 @@
 ﻿using Lab_3.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lab_3.Controllers
 {
@@ -18,7 +19,14 @@ namespace Lab_3.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var list = _contactService.FindAllOrganizations()
+                .Select(e => new SelectListItem()
+                {
+                    Text = e.Name,
+                    Value = e.Id.ToString(),
+
+                }).ToList();
+            return View(new Contact() { OrganizationList = list });
         }
 
 

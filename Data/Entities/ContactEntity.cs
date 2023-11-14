@@ -20,5 +20,8 @@ namespace Data.Entities
         [Column("birth_date")]
         public DateTime? Birth { get; set; }
         public int Priority { get; set; }
+        public OrganizationEntity Organization { get; set; }
+        public int? OrganizationId { get; set; }
+
     }
 }

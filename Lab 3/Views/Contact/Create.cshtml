@@ -34,6 +34,11 @@
         <select class="form-control" asp-for="Priority" asp-items="@Html.GetEnumSelectList<Priority>()"></select>
     </div>
     <div class="mb-3">
+        <label asp-for="OrganizationId">Organizacja</label>
+        <input class="form-control" asp-for="OrganizationId" />
+        <select class="form-control" asp-for="OrganizationId" asp-items="@Model.OrganizationList"></select>
+    </div>
+    <div class="mb-3">
         <button class="btn btn-primary" type="submit">Utwórz</button>
         <button class="btn btn-primary" type="reset">Wyczyść</button>
     </div>

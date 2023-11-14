@@ -14,6 +14,7 @@ namespace Lab_3.Models
                 Priority = (int)model.Priority,
                 Birth = model.Birth,
                 Email = model.Email,
+                OrganizationId = model.OrganizationId,
             };
         }
 
@@ -26,6 +27,7 @@ namespace Lab_3.Models
                 Phone = entity.Phone,
                 Priority = (Priority)entity.Priority,
                 Email = entity.Email,
+                OrganizationId = entity.OrganizationId,
             };
         }
     }

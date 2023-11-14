@@ -1,4 +1,6 @@
-﻿namespace Lab_3.Models
+﻿using Data.Entities;
+
+namespace Lab_3.Models
 {
     public interface IContactService
     {
@@ -7,5 +9,6 @@
         void Update(Contact contact);
         List<Contact> FindAll();
         Contact? FindById(int id);
+        List<OrganizationEntity> FindAllOrganizations();
     }
 }
