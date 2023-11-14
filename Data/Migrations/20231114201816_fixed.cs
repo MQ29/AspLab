@@ -7,7 +7,7 @@
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class organization : Migration
+    public partial class @fixed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

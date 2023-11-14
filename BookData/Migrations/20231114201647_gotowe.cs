@@ -4,10 +4,10 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace Lab3___zadanie.Migrations
+namespace BookData.Migrations
 {
     /// <inheritdoc />
-    public partial class Booksfixed : Migration
+    public partial class gotowe : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

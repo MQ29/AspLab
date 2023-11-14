@@ -17,13 +17,13 @@ namespace BookData
         {
             var folder = Environment.SpecialFolder.LocalApplicationData;
             var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "contacts.db");
+            DbPath = System.IO.Path.Join(path, "books.db");
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite($"Data Source={DbPath}", b => b.MigrationsAssembly("lab3zadanie"));
+                optionsBuilder.UseSqlite($"Data Source={DbPath}");
             }
         }
 
