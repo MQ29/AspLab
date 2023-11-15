@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Lab3zadanie.Models
@@ -15,8 +18,11 @@ namespace Lab3zadanie.Models
         [Range(0, 2023)]
         [Display(Name ="Publication Date")]
         public int? PublicationDate { get; set; }
-        public string? Publisher { get; set; }
-        [Display(Name = "Literary type")]
+        [DisplayName("Literary type")]
         public BookType BookType { get; set; }
+        public int? PublisherId { get; set; }
+        [ValidateNever]
+        public List<SelectListItem>? PublisherList { get; set; }
+
     }
 }

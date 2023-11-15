@@ -15,12 +15,12 @@ namespace BookData.Entities
         public int BookId { get; set; }
         [Required]
         public string Title { get; set; }
-        [Required]
-        public string Author { get; set; }
+        [Required]public string Author { get; set; }
         public string? ISBN { get; set; }
         [Range(0, 2023)]
         public int? PublicationDate { get; set; }
-        public string? Publisher { get; set; }
         public int BookType { get; set; }
+        public PublisherEntity Publisher { get; set; }
+        public int? PublisherId { get; set; }
     }
 }

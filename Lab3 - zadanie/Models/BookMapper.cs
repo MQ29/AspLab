@@ -16,7 +16,7 @@ namespace Lab3zadanie.Models
                 ISBN = model.ISBN,
                 BookType = (int)model.BookType,
                 PublicationDate = model.PublicationDate,
-                Publisher = model.Publisher,
+                PublisherId = model.PublisherId,
             };
         }
 
@@ -30,7 +30,7 @@ namespace Lab3zadanie.Models
                 ISBN = entity.ISBN,
                 BookType = (BookType)entity.BookType,
                 PublicationDate = entity.PublicationDate,
-                Publisher = entity.Publisher,
+                PublisherId = entity.PublisherId,
             };
         }
     }

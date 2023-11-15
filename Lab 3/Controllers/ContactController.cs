@@ -19,15 +19,23 @@ namespace Lab_3.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var list = _contactService.FindAllOrganizations()
-                .Select(e => new SelectListItem()
-                {
-                    Text = e.Name,
-                    Value = e.Id.ToString(),
+            //var list = _contactService.FindAllOrganizations()
+            //    .Select(e => new SelectListItem()
+            //    {
+            //        Text = e.Name,
+            //        Value = e.Id.ToString(),
 
-                }).ToList();
-            return View(new Contact() { OrganizationList = list });
+            //    }).ToList();
+            //return View(new Contact() { OrganizationList = list });
+
+            var model = new Contact();
+            model.OrganizationList = _contactService
+                .FindAllOrganizations()
+                .Select(o => new SelectListItem() { Value = o.Id.ToString(), Text = o.Name.ToString() })
+                .ToList();
+            return View(model); 
         }
+
         //private List<SelectListItem> CreateSelectListItem();
         //{
         //    return

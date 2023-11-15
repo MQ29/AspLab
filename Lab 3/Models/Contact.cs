@@ -1,6 +1,7 @@
 ﻿using Data.Entities;
 using Data.Migrations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
@@ -28,7 +29,9 @@ namespace Lab_3.Models
         public Priority Priority { get; set; }
         [HiddenInput]
         public DateTime Created { get; set; }
+        [HiddenInput]
         public int? OrganizationId { get; set; }
-        public List<SelectListItem> OrganizationList { get; set; }
+        [ValidateNever]
+        public List<SelectListItem>? OrganizationList { get; set; }
     }
 }

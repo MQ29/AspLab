@@ -30,7 +30,7 @@ namespace Lab_3.Models
 
         public List<Contact> FindAll()
         {
-            return _context.Contacts.Select(e => ContactMapper.FromEntity(e)).ToList();
+            return _context.Contacts.Select(e => ContactMapper.ToModel(e)).ToList();
         }
 
         public List<OrganizationEntity> FindAllOrganizations()
@@ -41,7 +41,7 @@ namespace Lab_3.Models
         public Contact? FindById(int id)
         {
             ContactEntity? find = _context.Contacts.Find(id);
-            return find != null ? ContactMapper.FromEntity(find) : null;
+            return find != null ? ContactMapper.ToModel(find) : null;
         }
 
         public void Update(Contact contact)

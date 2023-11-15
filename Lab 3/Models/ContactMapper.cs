@@ -18,7 +18,7 @@ namespace Lab_3.Models
             };
         }
 
-        public static Contact FromEntity(ContactEntity entity)
+        public static Contact ToModel(ContactEntity entity)
         {
             return new Contact()
             {

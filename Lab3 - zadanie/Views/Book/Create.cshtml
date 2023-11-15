@@ -22,11 +22,6 @@
         <span class="text-danger" asp-validation-for="ISBN"></span>
     </div>
     <div class="mb-3">
-        <label asp-for="Publisher">Publisher</label>
-        <input class="form-control" asp-for="Publisher" />
-        <span class="text-danger" asp-validation-for="Publisher"></span>
-    </div>
-    <div class="mb-3">
         <label asp-for="PublicationDate">Publication date</label>
         <input class="form-control" asp-for="PublicationDate" />
         <span class="text-danger" asp-validation-for="PublicationDate"></span>
@@ -37,6 +32,10 @@
             <span asp-validation-for="BookType" class="text-danger"></span>
         </div>
         <select class="form-control" asp-for="BookType" asp-items="@Html.GetEnumSelectList<BookType>()"></select>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PublisherList">Publisher</label>
+        <select class="form-control" asp-for="PublisherId" asp-items="@Model.PublisherList"></select>
     </div>
     <div class="mb-3">
         <button class="btn btn-primary" type="submit">Create</button>

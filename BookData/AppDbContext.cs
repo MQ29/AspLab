@@ -12,6 +12,8 @@ namespace BookData
     public class AppDbContext : DbContext
     {
         public DbSet<BookEntity> Books { get; set; }
+        public DbSet<PublisherEntity> Publishers { get; set; }
+
         private string DbPath { get; set; }
         public AppDbContext()
         {
@@ -29,10 +31,39 @@ namespace BookData
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BookEntity>()
+                .HasOne(c => c.Publisher)
+                .WithMany(p => p.Books)
+                .HasForeignKey(c => c.PublisherId);
+
+            modelBuilder.Entity<PublisherEntity>().HasData(
+                new { Id=1, Name = "Znak", Phone = "123456789" },
+                new { Id =2, Name = "Greg", Phone = "987654321" }
+                );
+
             modelBuilder.Entity<BookEntity>().HasData(
-                new { BookId = 1, Title = "Atlas Zbuntowany", Author = "Ayn Rand", ISBN = "123141412", PublicationDate = 2000, Publisher = "publisher", BookType = 2 },
-                new { BookId = 2, Title = "Solaris", Author = "Stanisław Lem", ISBN = "123141222", PublicationDate = 2003, Publisher = "publisher2", BookType = 1 }
+                new { BookId = 1, Title = "Atlas Zbuntowany", Author = "Ayn Rand", ISBN = "123141412", PublicationDate = 2000,  BookType = 2, PublisherId = 1},
+                new { BookId = 2, Title = "Solaris", Author = "Stanisław Lem", ISBN = "5443332154", PublicationDate = 2003,BookType = 1, PublisherId = 2}
             );
+
+            modelBuilder.Entity<PublisherEntity>()
+                .OwnsOne(p => p.Address)
+                .HasData(
+                new
+                {
+                    PublisherEntityId = 1,
+                    City = "Kraków",
+                    Street = "ul.Sienkiewicza",
+                    PostalCode = "31-234"
+                },
+                new
+                {
+                    PublisherEntityId = 2,
+                    City = "Poznań",
+                    Street = "ul.Mickiewicza",
+                    PostalCode = "31-555"
+                }
+                );
         }
     }
 }
