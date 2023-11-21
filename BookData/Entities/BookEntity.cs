@@ -20,7 +20,7 @@ namespace BookData.Entities
         [Range(0, 2023)]
         public int? PublicationDate { get; set; }
         public int BookType { get; set; }
-        public PublisherEntity Publisher { get; set; }
+        public PublisherEntity? Publisher { get; set; }
         public int? PublisherId { get; set; }
     }
 }

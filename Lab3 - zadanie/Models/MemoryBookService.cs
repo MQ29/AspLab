@@ -1,4 +1,6 @@
-﻿namespace Lab3zadanie.Models
+﻿using BookData.Entities;
+
+namespace Lab3zadanie.Models
 {
     public class MemoryBookService : IBookService
     {
@@ -20,6 +22,11 @@
         public List<Book> FindAll()
         {
             return _books.Values.ToList();
+        }
+
+        public List<PublisherEntity> FindAllPublishers()
+        {
+            throw new NotImplementedException();
         }
 
         public Book? FindById(int id)

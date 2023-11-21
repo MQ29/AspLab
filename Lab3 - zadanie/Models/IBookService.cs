@@ -1,4 +1,6 @@
-﻿namespace Lab3zadanie.Models
+﻿using BookData.Entities;
+
+namespace Lab3zadanie.Models
 {
     public interface IBookService
     {
@@ -7,5 +9,6 @@
         void Update(Book book);
        List<Book> FindAll();
         Book? FindById(int id);
+        List<PublisherEntity> FindAllPublishers();
     }
 }

@@ -20,6 +20,7 @@ namespace Lab3zadanie.Models
         public int? PublicationDate { get; set; }
         [DisplayName("Literary type")]
         public BookType BookType { get; set; }
+        [HiddenInput]
         public int? PublisherId { get; set; }
         [ValidateNever]
         public List<SelectListItem>? PublisherList { get; set; }

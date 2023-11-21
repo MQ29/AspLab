@@ -35,6 +35,11 @@ namespace Lab3zadanie.Models
             return _context.Books.Select(e => BookMapper.FromEntity(e)).ToList();
         }
 
+        public List<PublisherEntity> FindAllPublishers()
+        {
+            return _context.Publishers.ToList();
+        }
+
         public Book? FindById(int id)
         {
             BookEntity? find = _context.Books.Find(id);

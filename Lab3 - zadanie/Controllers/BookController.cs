@@ -1,5 +1,6 @@
 ﻿using Lab3zadanie.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lab3zadanie.Controllers
 {
@@ -18,7 +19,12 @@ namespace Lab3zadanie.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var model = new Book();
+            model.PublisherList = _bookService
+                .FindAllPublishers()
+                .Select(o => new SelectListItem() { Value = o.Id.ToString(), Text = o.Name })
+                .ToList();
+            return View(model);
         }
 
         [HttpPost]
