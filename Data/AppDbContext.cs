@@ -1,5 +1,8 @@
 ﻿using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<ContactEntity> Contacts { get; set; }
         public DbSet<OrganizationEntity> Organizations{ get; set; }
@@ -24,6 +27,42 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            var adminRole = new IdentityRole()
+            {
+                Name = "admin",
+                NormalizedName = "ADMIN",
+                Id = Guid.NewGuid().ToString()
+            };
+
+            adminRole.ConcurrencyStamp = adminRole.Id;
+            modelBuilder.Entity<IdentityRole>()
+                .HasData(
+                    adminRole
+                );
+            var passwordHasher = new PasswordHasher<IdentityUser>();
+            var user = new IdentityUser()
+            {
+                UserName = "Edmund",
+                Email = "edmund@wp.pl",
+                NormalizedEmail = "EDMUND@WP.PL",
+                EmailConfirmed = true,
+                Id = Guid.NewGuid().ToString()
+            };
+
+            user.PasswordHash = passwordHasher.HashPassword(user, "Edmund23!");
+
+            modelBuilder.Entity<IdentityUser>()
+                .HasData(
+                    user
+                );
+            modelBuilder.Entity<IdentityUserRole<string>>()
+                .HasData(
+                    new IdentityUserRole<string>()
+                    {
+                        RoleId = adminRole.Id,
+                        UserId = user.Id
+                    });
             modelBuilder.Entity<ContactEntity>()
                 .HasOne(c => c.Organization)
                 .WithMany(o => o.Contacts)
