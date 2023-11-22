@@ -16,10 +16,11 @@ namespace Lab3
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
             builder.Services.AddSession();
+            builder.Services.AddMemoryCache();
             builder.Services.AddTransient<IContactService, EFContactService>();
             builder.Services.AddSingleton<IDateTimeProvider, CurrentDateTimeProvider>();
             builder.Services.AddDbContext<AppDbContext>();
-                        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                        builder.Services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>() 
                 .AddEntityFrameworkStores<AppDbContext>();
             var app = builder.Build();
@@ -40,15 +41,9 @@ namespace Lab3
             app.UseAuthorization();
             app.UseSession();
             app.MapRazorPages();
-
-            app.UseRouting();
-                        app.UseAuthentication();;
-
-            app.UseAuthorization();
-
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Contact}/{action=Index}/{id?}");
 
             app.Run();
         }

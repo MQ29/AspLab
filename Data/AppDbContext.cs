@@ -44,13 +44,14 @@ namespace Data
             var user = new IdentityUser()
             {
                 UserName = "Edmund",
+                NormalizedUserName = "EDMUND",
                 Email = "edmund@wp.pl",
                 NormalizedEmail = "EDMUND@WP.PL",
                 EmailConfirmed = true,
                 Id = Guid.NewGuid().ToString()
             };
 
-            user.PasswordHash = passwordHasher.HashPassword(user, "Edmund23!");
+            user.PasswordHash = passwordHasher.HashPassword(user, "Edmund29!");
 
             modelBuilder.Entity<IdentityUser>()
                 .HasData(

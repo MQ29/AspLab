@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231121143426_indtity")]
-    partial class indtity
+    [Migration("20231121184948_identity")]
+    partial class identity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -141,8 +141,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "bffab419-a5e3-4f49-a3e8-96bca0035cd3",
-                            ConcurrencyStamp = "bffab419-a5e3-4f49-a3e8-96bca0035cd3",
+                            Id = "cb94525a-8f38-4647-89b9-c6f05f7af6de",
+                            ConcurrencyStamp = "cb94525a-8f38-4647-89b9-c6f05f7af6de",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -237,16 +237,16 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e255b337-68f2-41f5-b1e3-3dade6f94604",
+                            Id = "5b381219-aeb8-40fe-a8a5-65d817707d1d",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8249a3fa-733c-45b9-a1ee-d5dc00036a1d",
+                            ConcurrencyStamp = "5a5a716e-37ef-4472-9303-05d9b15fb678",
                             Email = "edmund@wp.pl",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EDMUND@WP.PL",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIIJOhdiioFyeXeraEs/StNUVCv3Z6rMWJiKQfRRtoD62bGz1U83hdT3VW7v3V1HKg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ8Y0tTN2NPAvau/Fagqf9Cqvz2i/kKOXQ5THe3zChpixHs0qV9Ll5qI2wlRhOmx8Q==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "523e07ca-8978-4a06-8b35-6ca34cceb0a5",
+                            SecurityStamp = "32bb283e-2cf7-4cb2-9648-af81113bb18a",
                             TwoFactorEnabled = false,
                             UserName = "Edmund"
                         });
@@ -314,8 +314,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "e255b337-68f2-41f5-b1e3-3dade6f94604",
-                            RoleId = "bffab419-a5e3-4f49-a3e8-96bca0035cd3"
+                            UserId = "5b381219-aeb8-40fe-a8a5-65d817707d1d",
+                            RoleId = "cb94525a-8f38-4647-89b9-c6f05f7af6de"
                         });
                 });
 
