@@ -44,6 +44,18 @@ namespace Lab_3.Models
             return find != null ? ContactMapper.ToModel(find) : null;
         }
 
+        public PagingList<Contact> FindPage(int page, int size)
+        {
+            var p = PagingList<Contact>.Create(null, _context.Contacts.Count(), page, size);
+            var data = _context.Contacts.OrderBy(o => o.Name)
+                              .Skip((p.Number - 1) * p.Size)
+                              .Take(p.Size)   
+                              .Select(ContactMapper.ToModel)
+                              .ToList();
+            p.Data = data;
+            return p;
+        }
+
         public void Update(Contact contact)
         {
             _context.Contacts.Update(ContactMapper.ToEntity(contact));

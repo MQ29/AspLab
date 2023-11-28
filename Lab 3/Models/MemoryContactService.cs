@@ -44,5 +44,10 @@ namespace Lab_3.Models
         {
             throw new NotImplementedException();
         }
+
+        public PagingList<Contact> FindPage(int page, int size)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
