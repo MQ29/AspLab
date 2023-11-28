@@ -26,7 +26,6 @@ namespace Lab_3.Controllers
                     .Where(x => x.Name.ToUpper().StartsWith(q.ToUpper()))
                     .Select(c => new {Name = c.Name, Id = c.Id})
                     .ToList()
-
                 ); 
         }
 
