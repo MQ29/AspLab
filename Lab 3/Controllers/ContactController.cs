@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lab_3.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ContactController : Controller
     {
         private readonly IContactService _contactService;
@@ -16,6 +16,22 @@ namespace Lab_3.Controllers
         public IActionResult Index()
         {
             return View(_contactService.FindAll());
+        }
+
+        [HttpGet]
+        public IActionResult CreateApi()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CreateApi(Contact model)
+        {
+            if (ModelState.IsValid)
+            {
+                _contactService.Add(model);
+                return RedirectToAction("Index");
+            }
+            return View(model); //ponownie wyswitl form
         }
 
         [HttpGet]
