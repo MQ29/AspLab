@@ -65,15 +65,19 @@ namespace Lab_3.Controllers
         //}
 
 
-    [HttpPost]
+        [HttpPost]
         public IActionResult Create(Contact model)
         {
-            if(ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 _contactService.Add(model);
                 return RedirectToAction("Index");
             }
-            return View(); //ponownie wyswitl form
+            model.OrganizationList = _contactService
+                .FindAllOrganizations()
+                .Select(o => new SelectListItem() { Value = o.Id.ToString(), Text = o.Name.ToString() })
+                .ToList();
+            return View(model);
         }
 
         [HttpGet]
