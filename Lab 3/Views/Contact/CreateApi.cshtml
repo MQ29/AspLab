@@ -49,23 +49,32 @@
 </form>
 <a class="btn btn-primary" asp-action="Index">Powrót</a>
 @section Scripts
-    {
+{
     <script>
         const select = document.getElementById('OrganizationId');
         const filter = document.getElementById('filter');
-        filter.onchange = function () {
-            select.innerHTML = "";
-            fetch(`/api/organizations?q=${filter.value}`)
-                .then(response => response.json())
-                .then(organizations => {
-                    for (let org of organizations) {
-                        const option = document.createElement('option');
-                        option.setAttribute('Value', org.id);
-                        option.innerText = org.name;
-                        select.appendChild(option);
-                    }
 
-                });
-        }
+        filter.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Zapobiega domyślnemu zachowaniu klawisza Enter w formularzu
+
+                select.innerHTML = ""; // Wyczyść istniejące opcje przed dodaniem nowych
+
+                fetch(`/api/organizations?q=${filter.value}`)
+                    .then(response => response.json())
+                    .then(organizations => {
+                        for (let org of organizations) {
+                            const option = document.createElement('option');
+                            option.value = org.id;
+                            option.innerText = org.name;
+                            select.appendChild(option);
+                        }
+
+                        // Dodaj logowanie wartości OrganizationId
+                        console.log(`OrganizationId: ${select.value}`);
+                    });
+            }
+        });
+
     </script>
 }

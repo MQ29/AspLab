@@ -12,6 +12,7 @@ namespace Lab_3.Models
         }
         public int Add(Contact contact)
         {
+            Console.WriteLine($"OrganizationId: {contact.OrganizationId}");
             var e = _context.Contacts.Add(ContactMapper.ToEntity(contact));
             _context.SaveChanges();
             int id = e.Entity.ContactId;

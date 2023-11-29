@@ -30,8 +30,8 @@ namespace Lab_3.Models
         [HiddenInput]
         public DateTime Created { get; set; }
         [HiddenInput]
-        public int? OrganizationId { get; set; }
+        public int OrganizationId { get; set; }
         [ValidateNever]
-        public List<SelectListItem>? OrganizationList { get; set; }
+        public List<SelectListItem> OrganizationList { get; set; }
     }
 }

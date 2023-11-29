@@ -70,8 +70,10 @@ namespace Lab_3.Controllers
         {
             if (ModelState.IsValid)
             {
-                _contactService.Add(model);
-                return RedirectToAction("Index");
+                
+                    _contactService.Add(model);
+                    return RedirectToAction("Index");
+                
             }
             model.OrganizationList = _contactService
                 .FindAllOrganizations()
@@ -83,7 +85,12 @@ namespace Lab_3.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_contactService.FindById(id));
+            var model = _contactService.FindById(id);
+            model.OrganizationList = _contactService
+               .FindAllOrganizations()
+               .Select(o => new SelectListItem() { Value = o.Id.ToString(), Text = o.Name.ToString() })
+               .ToList();
+            return View(model);
         }
 
         [HttpPost]
@@ -91,10 +98,15 @@ namespace Lab_3.Controllers
         {
             if(ModelState.IsValid) 
             {
+
                 _contactService.Update(model);
                 return RedirectToAction("Index");
             }
-            return View();
+            model.OrganizationList = _contactService
+               .FindAllOrganizations()
+               .Select(o => new SelectListItem() { Value = o.Id.ToString(), Text = o.Name.ToString() })
+               .ToList();
+            return View(model);
         }
 
         [HttpGet]
