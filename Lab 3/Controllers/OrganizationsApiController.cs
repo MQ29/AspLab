@@ -14,7 +14,6 @@ namespace Lab_3.Controllers
         {
             _context = context;
         }
-
         [HttpGet]
         public IActionResult GetOrganizationsByName(string? q)
         {

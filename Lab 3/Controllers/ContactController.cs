@@ -98,7 +98,6 @@ namespace Lab_3.Controllers
         {
             if(ModelState.IsValid) 
             {
-
                 _contactService.Update(model);
                 return RedirectToAction("Index");
             }
